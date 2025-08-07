@@ -42,7 +42,7 @@ with connect_to_moodle_database() as conn:
     cursor.execute("""
         SELECT u.id, u.username, u.email, u.firstname, u.lastname
         FROM mdl_user u
-        WHERE u.deleted = 0 AND u.username <> 'guest' AND u.username <> 'admin' AND exists (
+        WHERE u.deleted = 0 AND u.username <> 'guest' AND u.username <> 'admin' AND EXISTS (
             SELECT 1 FROM mdl_myplugin_dmoj_users mdu WHERE mdu.moodle_user_id = u.id
         )
     """)
