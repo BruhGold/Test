@@ -53,8 +53,6 @@ with connect_to_moodle_database() as conn:
             print(user[0],user[1])
         print(bcolors.ENDC)
 
-    conn.close()
-
 # The second time is to change the URL for repeatable tests
 driver.get(f"{www_dataroot}/admin/settings.php?section=local_prog")
 form = driver.find_element(By.ID, "adminsettings")
