@@ -16,14 +16,14 @@ www_dataroot = os.getenv("MOODLE_WWW_DATAROOT")
 service = webdriver.ChromeService(executable_path=os.getenv("CHROMEDRIVER_PATH"))
 driver = webdriver.Chrome(service=service)
 
-# Go to “<www->dataroot>/admin/settings.php?section=local_myplugin”
-driver.get(f"{www_dataroot}/admin/settings.php?section=local_myplugin")
+# Go to “<www->dataroot>/admin/settings.php?section=local_prog”
+driver.get(f"{www_dataroot}/admin/settings.php?section=local_prog")
 login_as_admin(driver)
 
 # Input a valid DMOJ URL Where you are hosting it
 form = driver.find_element(By.ID, "adminsettings")
 
-dmoj_url_field = form.find_element(By.ID,"id_s_local_myplugin_dmoj_domain")
+dmoj_url_field = form.find_element(By.ID,"id_s_local_prog_dmoj_domain")
 dmoj_url_field.clear()
 dmoj_url_field.send_keys("https://dmoj.ca") # This is a real DMOJ URL that is not modified for the plugin
 
@@ -56,10 +56,10 @@ with connect_to_moodle_database() as conn:
     conn.close()
 
 # The second time is to change the URL for repeatable tests
-driver.get(f"{www_dataroot}/admin/settings.php?section=local_myplugin")
+driver.get(f"{www_dataroot}/admin/settings.php?section=local_prog")
 form = driver.find_element(By.ID, "adminsettings")
 
-dmoj_url_field = form.find_element(By.ID,"id_s_local_myplugin_dmoj_domain")
+dmoj_url_field = form.find_element(By.ID,"id_s_local_prog_dmoj_domain")
 dmoj_url_field.clear()
 dmoj_url_field.send_keys("https://example.com")
 
